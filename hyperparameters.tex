@@ -7,27 +7,28 @@
 Определим следующий список гиперпараметров.
 \begin{itemize}
   \item Количество эпох обучения $\mathbb{\varepsilon}$ нейронной сети,
-  \item Количество слоев $S \in \mathbb{N}$ нейронной сети,
-  \item Количество нейронов $K_i \in \mathbb{N}$ в каждом слое $l_i, i \in [1, S]$,
-  \item Функция активации\cite[раздел activations]{bib:keras} нейронов $f_{a,i}: \mathbb{R} \rightarrow \mathbb{R}$ в каждом слое $l_i, i \in [1, S]$ ,
+  \item Количество слоев $L \in \mathbb{N}$ нейронной сети,
+  \item Количество нейронов $K_i \in \mathbb{N}$ в каждом слое $l_i, i \in [1, L]$,
+  \item Функция активации\cite[раздел activations]{bib:keras} нейронов $f_{a,i}: \mathbb{R} \rightarrow \mathbb{R}$ в каждом слое $l_i, i \in [1, L]$ ,
   \item Размер батча $Z \in \mathbb{N}$ [ссылка],
-  \item Функция потерь\cite[раздел losses]{bib:keras} $f_{loss}:~\mathbb{R} \rightarrow \mathbb{R}$.
+  \item Функция потерь\cite[раздел losses]{bib:keras} $f_{loss}$.
 \end{itemize}
 
 Для достижения максимально высокого качества работы сети необходимо найти оптимальный набор значений гиперпараметров.
 Для поиска таких параметров используется библиотека hyperopt\cite{bib:hyperopt} для языка Python.
 Она содержит набор функций, удобных для поиска наилучшего набора гиперпараметров.
+
 Определим множества значений гиперпараметров, среди которых будет осуществляться выбор.
 \begin{equation}\label{eq:hyper1}
   \mathbb{\varepsilon} \in [10, 10000]
 \end{equation}
 
 \begin{equation}\label{eq:hyper1}
-  S \in \{3; 4; 5; 6; 7\}
+  L \in \{3; 4; 5; 6; 7\}
 \end{equation}
 
 \begin{equation}\label{eq:hyper2}
-  K_i \in \{64; 128; 256; 512; 1024; 2048\}, где i \in \{1; \dots; S\}
+  K_i \in \{64; 128; 256; 512; 1024; 2048\}, где i \in \{1; \dots; L\}
 \end{equation}
 
 \begin{equation}\label{eq:hyper3}
@@ -35,7 +36,7 @@
 \end{equation}
 
 \begin{equation}\label{eq:hyper4}
-  f_{a,i} \in \{f_{relu}; f_{tanh}; f_{softmax}; f_{sigmoid}; f_{softplus}; f_{elu}\}, i \in \{1; \dots; S\}
+  f_{a,i} \in \{f_{relu}; f_{tanh}; f_{softmax}; f_{sigmoid}; f_{softplus}; f_{elu}\}, i \in \{1; \dots; L\}
 \end{equation}
 
 \begin{equation}\label{eq:hyper4}

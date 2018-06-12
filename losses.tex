@@ -13,7 +13,7 @@
   \nonumber f_{exp}(y, \hat{y}) &=& e^{|y-\hat{y}|} - 1.
 \end{eqnarray}
 
-Ниже представлены графики этих функций и их реализации на языке Python.
+Ниже представлены графики этих функций и их реализации\cite[раздел backend]{bib:keras} на языке Python.
 \begin{figure}[h]
 \begin{tikzpicture}
 \begin{axis}[
@@ -46,9 +46,14 @@
 
 \end{axis}
 \end{tikzpicture}
-\caption{Функции потерь}\label{fig:custom_losses}
+\caption{Графики функций потерь}\label{fig:custom_losses}
 \end{figure}
 
-\lstinputlisting[language=Python]{logloss_exploss.py}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{losses_python.png}
+    \caption{Реализации функций потерь}\label{fig:custom_losses}
+    \label{fig:losses_python}
+\end{figure}
 
-\newpage 
+%\lstinputlisting[language=Python]{logloss_exploss.py}
