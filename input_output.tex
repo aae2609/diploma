@@ -1,12 +1,12 @@
 \subsection{Входные и выходные данные}\label{subsec:input_output}
 
 \textbf{Входные параметры.} Нейронная сеть получает на~вход ошибочное кодовое слово $\widetilde{c} \in \widetilde{C}$,
-где $\widetilde{c} = c \oplus e_j, c \in C, j \in \{1;\dots; n\}$,
+где $\widetilde{c} = c \oplus e_j, c \in C, j \in \{0;\dots; n\}$,
 представленное в~виде набора признаков $f = (f_1, \dots, f_n)$, где~$f_i$ равен значению $i$-го бита~$\widetilde{c}$.
 
 \textbf{Пример.}
 \begin{equation}
-    \nonumber\widetilde{c} = (0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1)
+    \nonumber\widetilde{c} = (0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1)
 \end{equation}
 \begin{eqnarray}
  % Remove numbering (before each equation)
@@ -14,7 +14,7 @@
     \nonumber f_2 &=& 0, \\
     \nonumber f_3 &=& 1, \\
     \nonumber &\cdots& \\
-    \nonumber f_{15} &=& 1.
+    \nonumber f_{n} &=& 1.
 \end{eqnarray}
 
 \textbf{Выходные параметры.} Предполагается, что на выходе будет получено слово $\hat{c}$, с некоторой вероятностью равное слову $c$.
