@@ -1,0 +1,24 @@
+\subsection{Качество работы декодера}\label{subsec:accuracy}
+
+Определим функцию $eq$, принимающую некоторый вектор $a$ и некоторый вектор $b$ такие, что $|a|~=~|b|$:
+\begin{equation}\label{eq:equal}
+    eq(a, b) =
+    \begin{cases}
+        1, & \mbox{если } a~=~b, \\
+        0, & \mbox{иначе}.
+    \end{cases}
+\end{equation}
+
+Определим функцию $A(\mathcal{N}, D_V)$:
+\begin{equation}\label{eq:accuracy}
+    A(\mathcal{N}, D_V) = \frac{\sum_{(c, \widetilde{c})\in D_V}eq(\mathcal{N}(\widetilde{c}), c)}{|D_V|}
+\end{equation}
+
+Проверка качества работы нейронной сети $\mathcal{N}$ на валидационной выборке $D_V$ осуществляется посредством функции $A$. Для нейронной сети $\mathcal{N}$ с параметрами $s^*$:
+\begin{equation}\label{eq:final_accuracy}
+  A(\mathcal{N}_{s^*}, D_V)~\approx~0.92.
+\end{equation}
+
+Таким образом, получен декодер помехоустойчивого кода на основе нейронной сети с вероятностью исправления одной ошибки, равной $92 \%$.
+
+\newpage 

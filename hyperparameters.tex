@@ -1,0 +1,49 @@
+\subsection{Гиперпараметры}\label{subsec:hyperparameters}
+
+\begin{definition}
+  Гиперпараметры - это такие параметры нейронной сети, которые не изменяются в~процессе обучения нейронной сети, но от~выбора которых зависит последующее качество работы сети.
+\end{definition}
+
+Определим следующий список гиперпараметров.
+\begin{itemize}
+  \item Количество эпох обучения $\mathbb{\varepsilon}$ нейронной сети,
+  \item Количество слоев $S \in \mathbb{N}$ нейронной сети,
+  \item Количество нейронов $K_i \in \mathbb{N}$ в каждом слое $l_i, i \in [1, S]$,
+  \item Функция активации\cite[раздел activations]{bib:keras} нейронов $f_{a,i}: \mathbb{R} \rightarrow \mathbb{R}$ в каждом слое $l_i, i \in [1, S]$ ,
+  \item Размер батча $Z \in \mathbb{N}$ [ссылка],
+  \item Функция потерь\cite[раздел losses]{bib:keras} $f_{loss}:~\mathbb{R} \rightarrow \mathbb{R}$.
+\end{itemize}
+
+Для достижения максимально высокого качества работы сети необходимо найти оптимальный набор значений гиперпараметров.
+Для поиска таких параметров используется библиотека hyperopt\cite{bib:hyperopt} для языка Python.
+Она содержит набор функций, удобных для поиска наилучшего набора гиперпараметров.
+Определим множества значений гиперпараметров, среди которых будет осуществляться выбор.
+\begin{equation}\label{eq:hyper1}
+  \mathbb{\varepsilon} \in [10, 10000]
+\end{equation}
+
+\begin{equation}\label{eq:hyper1}
+  S \in \{3; 4; 5; 6; 7\}
+\end{equation}
+
+\begin{equation}\label{eq:hyper2}
+  K_i \in \{64; 128; 256; 512; 1024; 2048\}, где i \in \{1; \dots; S\}
+\end{equation}
+
+\begin{equation}\label{eq:hyper3}
+  Z \in \{8; 16; 32; 64; 128; 256; 512\}
+\end{equation}
+
+\begin{equation}\label{eq:hyper4}
+  f_{a,i} \in \{f_{relu}; f_{tanh}; f_{softmax}; f_{sigmoid}; f_{softplus}; f_{elu}\}, i \in \{1; \dots; S\}
+\end{equation}
+
+\begin{equation}\label{eq:hyper4}
+  f_{loss} \in \{f_{mse}; f_{mae}; f_{binary\_crossentropy}; f_{log}; f_{exp}\}
+\end{equation}
+
+Таким образом, декартово произведение множеств значений гиперпараметров образует пространство $\mathbb{S}$.
+%Adam - Оптимизация параметров производится методом стохастического градиентного спуска по дискретному множеству параметров. При этом на каждом шаге производится обучение нейронной сети и фиксация результатов.
+
+%С ее помощью был выбран набор, определяющий количество слоев и нейронов в каждом из них, функции активации, оптимизатор, функцию потерь, размер батча и количество эпох.
+\newpage 
