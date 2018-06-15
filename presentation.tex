@@ -5,6 +5,7 @@
 \usepackage[russian]{babel}
 %\usepackage{hyperref}
 %\usepackage[noline, noend, onelanguage, boxed]{algorithm2e}
+\setcounter{MaxMatrixCols}{20}
 
 \title[]{Реализация нейронной сети, выполняющей декодирование кода~Хэмминга с~использованием технологии Google Colaboratory}
 \author[Архипов А.\,Е.]{Архипов~Антон~Евгеньевич}
@@ -36,6 +37,53 @@
   }
   \end{itemize}
 \end{frame}
+
+
+
+\begin{frame}{Код Хэмминга}
+Выберем код Хэмминга $\mathbb{C}(16, 11)$ с пораждающей матрицей 
+\begin{equation}
+\nonumber
+G =
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}
+\end{equation}
+Обозначим n = 16, k = 11.
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}{Нейронные сети}
+\begin{figure}[h]
+    \centering
+  \includegraphics[width=0.7\textwidth]{nn_vizualisation.png}
+  \caption{Нейронная сеть.}
+  \label{fig:neuron}
+\end{figure}
+\end{frame}
+
+
+
+
+
+
 
 
 
@@ -159,7 +207,7 @@
 
 
 \begin{frame}{Параметры нейронной сети[3]}
-\begin{block}{Функция потерь}  
+\begin{block}{Функция потерь}
 Функция потерь $f_{loss}(y, \hat{y})$ --- функция, характеризующая величину отклонения ответа $y$ нейронной сети от правильного ответа~$\hat{y}$.
 \end{block}
 \pause
@@ -186,7 +234,6 @@
   \includegraphics[width=0.5\textwidth]{nuron_model.png}
   \caption{Структура искусственного нейрона.}
   \label{fig:neuron}
-
 \end{figure}
 
 \end{frame}
@@ -202,7 +249,7 @@
 \item Функция единичного скачка
 \item Линейный порог
 \item Логистическая функция (сигмоид)
-\item Гиперболический тангентс 
+\item Гиперболический тангентс
 \end{enumerate}
 
 \begin{figure}[h]
@@ -223,10 +270,50 @@
 
 
 \begin{frame}{Выбор оптимальных гиперпараметров}
-\begin{block}{FMin}
+\begin{block}{Исследования}
+\begin{itemize}
+  \item hyperopt.fmin()
+  \item keras.callbacks.History()
+  \item keras.callbacks.ModelCheckpoint()
+\end{itemize}
+\end{block}
 
+\pause
+\begin{block}{Анализ результатов}
+Наилучшее качество достигается при следующем наборе гиперпараметров:
+$$\begin{cases} \mbox{Количество слоев} = 5, \\ \mbox{Количества нейронов} = 208, \\ \mbox{Размер батча} = 256, \\ f_{loss} = f_{exp}, \\ f_{a,i} = f_{sigmoid}. \end{cases}$$
 \end{block}
 \end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Графики обучения}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{model_loss}
+    \caption{Функция потерь модели}
+    \label{fig:loss}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Графики обучения}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{model_binary_accuracy}
+    \caption{Точность модели}
+    \label{fig:accuracy}
+\end{figure}
+
+\end{frame}
+
+
 
 
 
