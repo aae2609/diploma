@@ -41,7 +41,7 @@
 
 
 \begin{frame}{Код Хэмминга}
-Выберем код Хэмминга $\mathbb{C}(16, 11)$ с пораждающей матрицей 
+Выберем код Хэмминга $\mathbb{C}(n=16, k=11)$ с пораждающей матрицей
 \begin{equation}
 \nonumber
 G =
@@ -59,7 +59,6 @@ G =
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1
 \end{pmatrix}
 \end{equation}
-Обозначим n = 16, k = 11.
 \end{frame}
 
 
@@ -82,6 +81,15 @@ G =
 
 
 
+\begin{frame}{Нейронные сети}
+\begin{figure}[h]
+    \centering
+  \includegraphics[width=0.7\textwidth]{nuron_model.png}
+  \caption{Структура искусственного нейрона.}
+  \label{fig:neuron}
+\end{figure}
+\end{frame}
+
 
 
 
@@ -90,22 +98,41 @@ G =
 
 
 \begin{frame}{Настройка Google Colaboratory}
-
-\begin{columns}[t]
-\column{.5\textwidth}
-\centering
-\includegraphics[width=5cm,height=3.5cm]{colab_settings_1.jpeg}\\ %лв
-\includegraphics[width=5cm,height=2.5cm]{colab_settings_3.png}    %лн
-\column{.5\textwidth}
-\centering
-\includegraphics[width=5cm,height=4cm]{colab_settings_2.png}\\    %пв
-\includegraphics[width=5cm,height=2.5cm]{colab_settings_4.png}    %пн
-\end{columns}
-
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{colab_settings_1.jpeg} \\
+  \caption{Создание файла.}
+\end{figure}
 \end{frame}
 
 
 
+
+
+\begin{frame}{Настройка Google Colaboratory}
+\begin{figure}[h]
+  \centering
+\includegraphics[width=0.7\textwidth]{colab_settings_3.png}    %лн
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+\includegraphics[width=0.5\textwidth]{colab_settings_2.png}\\    %пв
+  \caption{Настройка GPU.}
+\end{figure}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Настройка Google Colaboratory}
+\begin{figure}[h]
+  \centering
+\includegraphics[width=0.8\textwidth]{colab_settings_4.png}    %пн
+  \caption{Авторизация и подключение Google Drive.}
+\end{figure}
+\end{frame}
 
 
 
@@ -154,7 +181,7 @@ G =
 
 \begin{block}{Набор данных}
 Определим блок $B_i = \{ (c_i, \widetilde{c}) ~|~ \forall~\widetilde{c} \in \widetilde{\mathbb{C}_i} \}, i \in \{0; \dots; M-1\}$. \\
-Тогда набор данных $D$ равен $\begin{pmatrix} B_0 \\ B_1 \\ \dots \\ B_{M-1} \end{pmatrix}.$
+Набор данных $D = \begin{pmatrix} B_0 \\ B_1 \\ \dots \\ B_{M-1} \end{pmatrix}$. Разобьем $D$ на $D_T$ и $D_V$ так: $\frac{D_V}{D_T}= \frac{30}{70}$.
 \end{block}
 \end{frame}
 
@@ -172,7 +199,6 @@ G =
 где $\widetilde{c} = c \oplus e_j, c \in \mathbb{C}, j \in \{0;\dots; n\}$,
 представленное в~виде набора признаков $f = (f_1, \dots, f_n)$, где~$f_i$ равен значению $i$-го бита~$\widetilde{c}$
 \end{block}
-\pause
 
 \begin{block}{Выходные параметры}
 Предполагается, что на выходе будет получено слово $\hat{c}$, с некоторой вероятностью равное слову $c$.
@@ -270,7 +296,7 @@ G =
 
 
 \begin{frame}{Выбор оптимальных гиперпараметров}
-\begin{block}{Исследования}
+\begin{block}{}
 \begin{itemize}
   \item hyperopt.fmin()
   \item keras.callbacks.History()
@@ -280,9 +306,31 @@ G =
 
 \pause
 \begin{block}{Анализ результатов}
-Наилучшее качество достигается при следующем наборе гиперпараметров:
-$$\begin{cases} \mbox{Количество слоев} = 5, \\ \mbox{Количества нейронов} = 208, \\ \mbox{Размер батча} = 256, \\ f_{loss} = f_{exp}, \\ f_{a,i} = f_{sigmoid}. \end{cases}$$
+Наилучшее качество достигается при наборе гиперпараметров $s^*$, равном:
+$$ s^* = \begin{cases} \mbox{Количество слоев} = 5, \\ \mbox{Количества нейронов} = 208, \\ \mbox{Размер батча} = 256, \\ f_{loss} = f_{exp}, \\ f_{a,i} = f_{sigmoid}. \end{cases}$$
 \end{block}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Построение нейронной сети}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{neural_network_create.png}
+    \caption{Создание модели нейронной сети.}
+    \label{fig:neural_network_create}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{neural_network_fit.png}
+    \caption{Обучение модели.}
+    \label{fig:neural_network_fir}
+\end{figure}
 \end{frame}
 
 
@@ -316,6 +364,27 @@ $$\begin{cases} \mbox{Количество слоев} = 5, \\ \mbox{Колич�
 
 
 
+
+\begin{frame}{Оценка качества}
+
+\begin{block}{}
+Определим функцию $eq(x, y) =
+    \begin{cases}
+            1, & \mbox{если } x~=~y, \\
+        0, & \mbox{иначе}.
+    \end{cases} $
+\end{block}    
+
+\begin{block}{}
+Определим функцию $A(\mathcal{N}, D) = \frac{\sum\limits_{(c, \widetilde{c})\in D}eq(c, \mathcal{N}(\widetilde{c}))}{|D|}$.
+\end{block}
+
+\begin{block}{}
+Проверка качества работы нейронной сети $\mathcal{N}$ с параметрами $s^*$ на валидационной выборке $D_V$ :
+$$ A(\mathcal{N}_{s^*}, D_V)~\approx~0.92. $$
+
+\end{block}
+\end{frame}
 
 
 
