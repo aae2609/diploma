@@ -181,7 +181,7 @@ G =
 
 \begin{block}{Набор данных}
 Определим блок $B_i = \{ (c_i, \widetilde{c}) ~|~ \forall~\widetilde{c} \in \widetilde{\mathbb{C}_i} \}, i \in \{0; \dots; M-1\}$. \\
-Набор данных $D = \begin{pmatrix} B_0 \\ B_1 \\ \dots \\ B_{M-1} \end{pmatrix}$. Разобьем $D$ на $D_T$ и $D_V$ так: $\frac{D_V}{D_T}= \frac{30}{70}$.
+Набор данных $D = \begin{pmatrix} B_0 \\ B_1 \\ \dots \\ B_{M-1} \end{pmatrix}$. Разобьем $D$ на $D_V$ и $D_T$ так: $\frac{D_V}{D_T}= \frac{30}{70}$.
 \end{block}
 \end{frame}
 
@@ -373,7 +373,7 @@ $$ s^* = \begin{cases} \mbox{Количество слоев} = 5, \\ \mbox{Ко
             1, & \mbox{если } x~=~y, \\
         0, & \mbox{иначе}.
     \end{cases} $
-\end{block}    
+\end{block}
 
 \begin{block}{}
 Определим функцию $A(\mathcal{N}, D) = \frac{\sum\limits_{(c, \widetilde{c})\in D}eq(c, \mathcal{N}(\widetilde{c}))}{|D|}$.
@@ -397,7 +397,7 @@ $$ A(\mathcal{N}_{s^*}, D_V)~\approx~0.92. $$
 
  \begin{itemize}
   \item {
-    Построена реализация нейронной сети~$\mathcal{N}$, выполняющей декодирование кода~Хэмминга~$\mathcal{C}$ с~использованием технологии Google Colaboratory.
+    Построена реализация нейронной сети~$\mathcal{N}$, выполняющей декодирование кода~Хэмминга~$\mathbb{C}$ с~использованием технологии Google Colaboratory.
   }
   \item {
     Вероятность выдачи корректного результата работы нейронной сети~$\mathcal{N}$ равна~0.92.
